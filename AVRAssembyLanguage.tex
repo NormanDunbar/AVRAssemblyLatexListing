@@ -6,11 +6,11 @@
 %%%                                                                            %%%
 %%% Place this file in your working directory (next to the latex file you're   %%%
 %%% working on).  To add it to your project, place:                            %%%
-%%%    \input{arduinoLanguage.tex}                                             %%%
+%%%    \input{AVRAssemblyLanguage.tex}                                         %%%
 %%% somewhere before \begin{document} in your latex file.                      %%%
 %%%                                                                            %%%
 %%% In your document, place your arduino code between:                         %%%
-%%%   \begin{lstlisting}[language=Arduino]                                     %%%
+%%%   \begin{lstlisting}[language=AVRAssembly]                                 %%%
 %%% and:                                                                       %%%
 %%%   \end{lstlisting}                                                         %%%
 %%%                                                                            %%%
@@ -286,7 +286,7 @@
                 % Add AVR-GCC preprocessor directives
                 %
                 DEFINE, INCLUDE, UNDEF, WARNING, PRAGMA, 
-                },      arduinoLanguage
+                }, 
 %
 %
   %%% Keyword Color Group 4 %%%  (called KEYWORD2 by arduino)
