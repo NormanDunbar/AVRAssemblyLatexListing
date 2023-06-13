@@ -1,13 +1,14 @@
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 %%% ~ Arduino Language - Arduino IDE Colors ~                                  %%%
 %%%                                                                            %%%
-%%% Kyle Rocha-Brownell | 10/2/2017 | No Licence                               %%%
+%%% Norman Dunbar | 17/03/2023 | MIT Licence                                   %%%
 %%% -------------------------------------------------------------------------- %%%
+%%% For LaTeX projects:                                                        %%%
 %%%                                                                            %%%
-%%% Place this file in your working directory (next to the latex file you're   %%%
-%%% working on).  To add it to your project, place:                            %%%
+%%% Place this file in your source directory where the latex file you're       %%%
+%%% creating/editing lives.  Then, add:                                        %%%
 %%%    \input{AVRAssemblyLanguage.tex}                                         %%%
-%%% somewhere before \begin{document} in your latex file.                      %%%
+%%% in the preamble, before \begin{document}, in your latex file.              %%%
 %%%                                                                            %%%
 %%% In your document, place your arduino code between:                         %%%
 %%%   \begin{lstlisting}[language=AVRAssembly]                                 %%%
@@ -15,7 +16,30 @@
 %%%   \end{lstlisting}                                                         %%%
 %%%                                                                            %%%
 %%% Or create your own style to add non-built-in functions and variables.      %%%
+%%% -------------------------------------------------------------------------- %%%
+%%% For LyX projects:                                                          %%%
 %%%                                                                            %%%
+%%% In Lyx, go to Document->Settings and click on LaTeX Preamble.              %%%
+%%%                                                                            %%%
+%%% Add the following text to the existing preamble:                           %%%
+%%%                                                                            %%%
+%%% \lstdefinestyle{AVRasm}{                                                   %%%
+%%%   language=AVRAssembly,                                                    %%%
+%%%   %% Add other words needing highlighting below %%                         %%%
+%%%   morekeywords=[1]{},        % [1] -> dark blue - opcodes                  %%%
+%%%   morekeywords=[2]{},        % [2] -> blue - registers & bit names         %%%
+%%%   morekeywords=[3]{},        % [3] -> orange - assembler directives        %%%
+%%%   morekeywords=[4]{},        % [4] -> green - assembler functions          %%% 
+%%% }                                                                          %%%
+%%%                                                                            %%%
+%%% To highlight some AVR assembly code, right-click the program listing       %%%
+%%% insert, and select settings. On the advanced tab, add the text:            %%% 
+%%%    style=AVRasm                                                            %%%
+%%%                                                                            %%%
+%%% To highlight AVR assembly code inserts as a child document, right-click    %%%
+%%% the inserted file, choose settings. At the bottom of the dialogue, add:    %%%
+%%%    style=AVRasm                                                            %%%
+%%% in the "More parameter" editbox on the right side.                         %%%
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 
 \usepackage{color}
@@ -87,119 +111,124 @@
   %%% Keyword Color Group 2 %%%  (called LITERAL1 by arduino)
   keywordstyle=[2]\color{arduinoBlue},   
   keywords=[2]{ % Add registers and bit names to 2nd group  
-                EEDR, EEARL, EEARH, EEAR,
-                GTCCR, TSM, PSRASY, PSRSYNC,
-                TTCR0A, COM0A1, COM0A0, COM0B1, COM0B0, WGM01, 
-                WGM00,
-                TTCR0B, FOC0A, FOC0B, WGM02, CS02, CS01, CS00,
-                TCNT0, OCR0A, OCR0B,
-                GPIOR1, GPIOR2,
-                SPCR, SPIE, SPE, DORD, MSTR, CPOL, CPHA, SPR1, 
-                SPR0,
-                SPSR, SPIF, WCOL, SPI2X,
-                SPDR,
-                ACSR, ACD, ACBG, ACO, ACI, ACIE, ACIC, ACIS1, 
-                ACIS0,
-                SMCR, SM2, SM1, SM0, SE,
-                MCUSR, WDRF, BORF, EXTRF, PORF,
-                MCUCR, BODS, BODSE, PUD, IVSEL, IVCE,
-                SPMCSR, SPMIE, RWWSB, RWWSRE, BLBSET, PGWRT, 
-                PGERS, SELFPRGEN,
-                SPL, SP7, SP6, SP5, SP4, SP3, SP2, SP1, SP0, 
-                SPH, SP10, SP9, SP8,
-                SREG, 
+                ACBG, ACD, ACI, ACIC, ACIE, ACIS0, ACIS1, ACME, 
+                ACO, ACSR, ADATE, ADC, ADC0D, ADC1D, ADC2D, 
+                ADC3D, ADC4D, ADC5D, ADCH, ADCL, ADCSRA, ADCSRB, 
+                ADCW, ADEN, ADIE, ADIF, ADLAR, ADMUX, ADPS0, 
+                ADPS1, ADPS2, ADSC, ADTS0, ADTS1, ADTS2, AIN0D, 
+                AIN1D, AS2, ASSR, 
                 %
-                WDTCSR, WDIF, WDIE, WDP3, WDCE, WDE, WDP2, 
-                WDP1, WDP0,
-                CLKPR, CLKPCE, CLKPS3, CLKPS2, CLKPS1, CLKPS0,
-                PRR, PRTWI, PRTIM2, PRTIM0, PRTIM1, PRSPI, 
-                PRUSART0, PRADC,
-                OSCCAL,
-                PCICR, PCIE2, PCIE1, PCIE0,
-                EICRA, ISC11, ISC10, ISC01, ISC00,
-                PCMSK0, PCINT7, PCINT6, PVINT5, PCINT4, PCINT3, 
-                PCINT2, PCINT1, PCINT0,
-                PCMSK1, PCINT14, PCINT13, PCINT12, PCINT11, 
-                PCINT10,, PCINT9, PCINT8,
-                PCMSK2, PCINT23, PCINT22, PVINT21, PCINT20, 
-                PCINT19, PCINT18, PCINT17, PCINT16,
-                TIMSK0, OCIE0B, OCIE0A, TOIE0,
-                TIMSK1, ICIE1, OCIE1B, OCIE1A, TOIE1,
-                TIMSK2, OCIE2B, OCIE2A, TOIE2,
-                ADCL, ADCH, ADC, ADCW,
-                ADCSRA, ADEN, ADSC, ADATE, ADIF, ADIE, ADPS2, 
-                ADPS1, ADPS0,
-                ADCSRB, ACME, ADTS2, ADTS1, ADTS0,
-                ADMUX, REFS1, REFS0, ADLAR, MUX3, MUX2, MUX1, 
-                MUX0,
-                DIDR0, ADC5D, ADC4D, ADC3D, ADC2D, ADC1D, ADC0D,
-                DIDR1, AIN1D, AIN0D,
-                TCCR1A, COM1A1, COM1A0, COM1B1, COM1B0, WGM11, 
-                WGM10,
-                TCCR1B, ICNC1, ICES1, WGM13, WGM12, CS12, CS11, 
-                CS10,
-                TCCR1C, FOC1A, FOC1B,
-                TCNT1, TCNT1L, TCNT1H,
-                ICR1, ICR1L, ICR1H,
-                OCR1A, OCR1AL, OCR1AH,
-                OCR1B, OCR1BL, OCR1BH,
-                TCCR2A, COM2A1, COM2A0, COM2B1, COM2B0, WGM21, 
-                WGM20,
-                TCCR2B, FOC2A, FOC2B, WGM22, CS22, CS21, CS20,
-                TCNT2, OCR2A, OCR2B,
-                ASSR, EXCLK, AS2, TCN2UB, OCR2AUB, OCR2BUB, 
-                TCR2AUB, TCR2BUB,
-                TWBR, TWDR,
-                TWSR, TWS7, TWS6, TWS5, TWS4, TWS3, TWPS1, 
-                TWPS0,
-                TWAR, TWA6, TWA5, TWA4, TWA3, TWA2, TWA1, TWA0, 
-                TWGCE,
-                TWCR, TWINT, TWEA, TWSTA, TWSTO, TWWC, TWEN, 
-                TWIE,
-                TWAMR, TWAM6, TWAM5, TWAM4, TWAM3, TWAM2, 
-                TWAM1, TWAM0,
+                BLBSET, BODS, BODSE, BORF, 
                 %
-                UCSR0A, RXC0, TXC0, UDRE0, FE0, DOR0, UPE0, 
-                U2X0, MPCM0,
-                UCSR0B, RXCIE0, TXCIE0, IDRIE0, RXEN0, TXEN0, 
-                UCSZ02, RXB80, TXB80,
-                UCSR0C, UMSEL01, UMSEL00, UPM01, UPM00, USBS0, 
-                UCSZ01, UDORD0, UCSZ00, UCPHA0, UCPOL0,
-                UBRR0, UBRR0L, UBRR0H,
-                UDR0,
+                CLKPCE, CLKPR, CLKPS0, CLKPS1, CLKPS2, CLKPS3, 
+                COM0A0, COM0A1, COM0B0, COM0B1, COM1A0, COM1A1, 
+                COM1B0, COM1B1, COM2A0, COM2A1, COM2B0, COM2B1, 
+                CPHA, CPOL, CS00, CS01, CS02, CS10, CS11, CS12, 
+                CS20, CS21, CS22, 
                 %
-                EECR, EEPM1, EEPM0, EERIE, EEMPE, EEPE, EERE,
-                GPIOR0,
-                EIMSK, INT1, INT0,
-                EIFR, INTF1, INTF0,
+                DDB0, DDB1, DDB2, DDB3, DDB4, DDB5, DDB6, DDB7, 
+                DDC0, DDC1, DDC2, DDC3, DDC4, DDC5, DDC6, 
+                DDD0, DDD1, DDD2, DDD3, DDD4, DDD5, DDD6, DDD7, 
+                DDRB, DDRC, DDRD, DIDR0, DIDR1, DOR0, DORD, 
                 %
-                PCIFR, PCIF2, PCIF1, PCIF0,
+                EEAR, EEARH, EEARL, EECR, EEDR, EEMPE, EEPE, 
+                EEPM0, EEPM1, EERE, EERIE, EICRA, EIFR, EIMSK, 
+                EXCLK, EXTRF, FE0, 
                 %
-                TIFR2, OCF2B, OCF2A, TOV2, 
-                TIFR1, ICF1, OCF1B, OCF1A, TOV1, 
-                TIFR0, OCF0B, OCF0A, TOV0, 
+                FOC0A, FOC0B, FOC1A, FOC1B, FOC2A, FOC2B, 
                 %
-                PORTD, PORTD7, PORTD6, PORTD5, PORTD4, PORTD3, 
-                PORTD2, PORTD1, PORTD0, 
-                DDRD, DDD7, DDD6, DDD5, DDD4, DDD3, DDD2, DDD1, 
-                DDD0, 
-                PIND, PIND7, PIND6, PIND5, PIND4, PIND3, PIND2, 
-                PIND1, PIND0, 
-                PORTC, PORTC6, PORTC5, PORTC4, PORTC3, PORTC2, 
-                PORTC1, PORTC0, 
-                DDRC, DDC6, DDC5, DDC4, DDC3, DDC2, DDC1, DDC0, 
-                PINC, PINC6, PINC5, PINC4, PINC3, PINC2, PINC1, 
-                PINC0, 
-                PORTB, PORTB7, PORTB6, PORTB5, PORTB4, PORTB3, 
-                PORTB2, PORTB1, PORTB0, 
-                DDRB, DDB7, DDB6, DDB5, DDB4, DDB3, DDB2, DDB1, 
-                DDB0, 
-                PINB, PINB7, PINB6, PINB5, PINB4, PINB3, PINB2, 
-                PINB1, PINB0, 
+                GPIOR0, GPIOR1, GPIOR2, GTCCR, 
                 %
-                % Fuses?
+                ICES1, ICF1, ICIE1, ICNC1, ICR1, ICR1H, ICR1L, 
+                IDRIE0, INT0, INT1, INTF0, INTF1, ISC00, ISC01, 
+                ISC10, ISC11, IVCE, IVSEL, 
                 %
-                BOOTRST,
+                MCUCR, MCUSR, MPCM0, MSTR, MUX0, MUX1, MUX2, 
+                MUX3, 
+                %
+                OCF0A, OCF0B, OCF1A, OCF1B, OCF2A, OCF2B, 
+                OCIE0A, OCIE0B, OCIE1A, OCIE1B, OCIE2A, OCIE2B,
+                OCR0A, OCR0B, OCR1A, OCR1AH, OCR1AL, OCR1B, 
+                OCR1BH, OCR1BL, OCR2A, OCR2AUB, OCR2B, OCR2BUB,
+                OSCCAL, 
+                %
+                PCICR, PCIE0, PCIE1, PCIE2, PCIF0, PCIF1, 
+                PCIF2, PCIFR, 
+                %
+                PCINT0, PCINT1, PCINT2, PCINT3, PCINT4, PCINT6,
+                PCINT7, PCINT8, PCINT9, PCINT10, PCINT11, 
+                PCINT12, PCINT13, PCINT14, PCINT16, PCINT17, 
+                PCINT18, PCINT19, PCINT20, PCINT22, PCINT23, 
+                %
+                PCMSK0, PCMSK1, PCMSK2, PGERS, PGWRT, 
+                %
+                PINB, 
+                PINB0, PINB1, PINB2, PINB3, PINB4, PINB5, PINB6,
+                PINB7, 
+                PINC, 
+                PINC0, PINC1, PINC2, PINC3, PINC4, PINC5, PINC6,  
+                PIND, 
+                PIND0, PIND1, PIND2, PIND3, PIND4, PIND5, PIND6,
+                PIND7, 
+                %
+                PORF, 
+                PORTB, 
+                PORTB0, PORTB1, PORTB2, PORTB3, PORTB4, PORTB5,
+                PORTB6, PORTB7, 
+                PORTC, 
+                PORTC0, PORTC1, PORTC2, PORTC3, PORTC4, PORTC5,
+                PORTC6, 
+                PORTD, 
+                PORTD0, PORTD1, PORTD2, PORTD3, PORTD4, PORTD5,
+                PORTD6, PORTD7, 
+                %
+                PRADC, PRR, PRSPI, PRTIM0, PRTIM1, PRTIM2, 
+                PRTWI, PRUSART0, PSRASY, PSRSYNC, PUD, PVINT21,
+                PVINT5, 
+                %
+                REFS0, REFS1, RWWSB, RWWSRE, RXB80, RXC0, 
+                RXCIE0, RXEN0, 
+                %
+                SE, SELFPRGEN, SM0, SM1, SM2, SMCR, SP0, SP1, 
+                SP10, 
+                SP2, SP3, SP4, SP5, SP6, SP7, SP8, SP9, 
+                SPCR, SPDR, SPE, SPH, SPI2X, SPIE, SPIF, SPL,
+                SPMCSR, SPMIE, SPR0, SPR1, SPSR, SREG, 
+                %
+                TCCR1A, TCCR1B, TCCR1C, TCCR2A, TCCR2B, TCN2UB,
+                TCNT0, TCNT1, TCNT1H, TCNT1L, TCNT2, TCR2AUB, 
+                TCR2BUB, TIFR0, TIFR1, TIFR2, TIMSK0, TIMSK1,
+                TIMSK2, TOIE0, TOIE1, TOIE2, TOV0, TOV1, TOV2, 
+                TSM, TTCR0A, TTCR0B, TWA0, TWA1, TWA2, TWA3, 
+                TWA4, TWA5, TWA6, TWAM0, TWAM1, TWAM2, TWAM3, 
+                TWAM4, TWAM5, TWAM6, TWAMR, TWAR, TWBR, TWCR, 
+                TWDR, TWEA, TWEN, TWGCE, TWIE, TWINT, 
+                TWPS0, TWPS1, TWS3, TWS4, TWS5, TWS6, TWS7, 
+                TWSR, TWSTA, TWSTO, TWWC, TXB80, TXC0, TXCIE0, 
+                TXEN0, 
+                %
+                U2X0, UBRR0, UBRR0H, UBRR0L, UCPHA0, UCPOL0, 
+                UCSR0A, UCSR0B, UCSR0C, UCSZ00, UCSZ01, UCSZ02,
+                UDORD0, UDR0, UDRE0, UMSEL00, UMSEL01, UPE0, 
+                UPM00, UPM01, USBS0, 
+                %
+                WCOL, WDCE, WDE, WDIE, WDIF, WDP0, WDP1, WDP2, 
+                WDP3, WDRF, WDTCSR, WGM00, WGM01, WGM02, WGM10,
+                WGM11, WGM12, WGM13, WGM20, WGM21, WGM22, 
+                %
+                % Fuses
+                %
+                BODLEVEL0, BODLEVEL1, BODLEVEL2, 
+                BOOTRST, BOOTSZ0, BOOTSZ1, 
+                CKDIV8, CKOUT, 
+                CKSEL0, CKSEL1, CKSEL2, CKSEL3, 
+                DWEN, EESAVE, RSTDISBL, SPOIEN, 
+                SUT0, SUT1, WDTON, 
+                %
+                % Lock Bits
+                %
+                BLB01, BLB02, BLB11, BLB12,
+                LB1, LB2
                 %
                 % General purpose registers
                 %
@@ -207,9 +236,7 @@
                 R9,  R10, R11, R12, R13, R14, R15, R16, R17, 
                 R18, R19, R20, R21, R22, R23, R24, R25, R26, 
                 R27, R28, R29, R30, R31, 
-                X, XH, XL,
-                Y, YH, YL,
-                Z, ZH, ZL,
+                X, XH, XL, Y, YH, YL, Z, ZH, ZL,
                 },  
 % 
 %
